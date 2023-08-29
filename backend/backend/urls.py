@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from todo import views
 
-router = routers.DefaultRouter()
-router.register(r'todos', views.TodoView, 'todo')
+from apps.accounts.urls import accounts_urlpatterns
+from apps.notes.urls import notes_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
 ]
+
+urlpatterns += accounts_urlpatterns
+urlpatterns += notes_urlpatterns
